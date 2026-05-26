@@ -173,10 +173,29 @@
       margin-bottom: 48px;
     }
 
-    /* ── HERO ── */
+    /* ── HERO CAROUSEL ── */
     .hero {
       background: var(--white);
       border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .hero-slide {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+    .hero-slide-photo {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #c8c0b4;
     }
     .hero-inner {
       max-width: 1200px;
@@ -186,6 +205,52 @@
       grid-template-columns: 1fr 420px;
       gap: 64px;
       align-items: center;
+    }
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: background 0.15s, box-shadow 0.15s;
+      user-select: none;
+    }
+    .hero-arrow:hover {
+      background: var(--white);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+    }
+    .hero-arrow svg { display: block; }
+    .hero-arrow-prev { left: 20px; }
+    .hero-arrow-next { right: 20px; }
+    .hero-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 7px;
+      z-index: 10;
+    }
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-dot.active {
+      background: var(--chula-wine);
+      transform: scale(1.3);
     }
     .hero-kicker {
       display: inline-flex;
@@ -598,6 +663,9 @@
       transition: box-shadow 0.2s;
     }
     .member-card:hover { box-shadow: var(--shadow-md); }
+    a.member-card { cursor: pointer; }
+    a.member-card .member-name { color: var(--ink); transition: color 0.15s; }
+    a.member-card:hover .member-name { color: var(--chula-wine); }
     .member-photo {
       width: 100%;
       aspect-ratio: 1;
@@ -624,6 +692,60 @@
       font-size: 12px;
       color: var(--ink-muted);
       line-height: 1.4;
+    }
+
+    /* ── ALUMNI ── */
+    .alumni-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .alumni-table thead tr {
+      border-bottom: 2px solid var(--border-strong);
+    }
+    .alumni-table th {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding: 0 16px 12px 0;
+      text-align: left;
+    }
+    .alumni-table tbody tr {
+      border-top: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    .alumni-table tbody tr:hover {
+      background: var(--bg);
+    }
+    .alumni-table td {
+      padding: 13px 16px 13px 0;
+      vertical-align: middle;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+    .alumni-table td:first-child {
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .alumni-degree-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: var(--chula-gold-light);
+      color: var(--chula-wine-dark);
+    }
+    .alumni-year {
+      font-size: 13px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+    .alumni-position {
+      font-size: 13.5px;
     }
 
     /* ── NEWS ── */
@@ -901,7 +1023,6 @@
     </a>
     <ul class="nav-links">
       <li><a href="#research">Research</a></li>
-      <li><a href="#about">PI</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#members">Members</a></li>
       <li><a href="#news">News</a></li>
@@ -911,53 +1032,126 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-kicker">Photocatalysis &amp; Environmental Engineering</div>
-      <h1 class="hero-title">Photocatalysis for a<br><span>Sustainable Future</span></h1>
-      <p class="hero-body">
-        We engineer advanced photocatalytic materials and circular-economy processes
-        to address global challenges in solar energy conversion, water remediation,
-        and sustainable manufacturing.
-      </p>
-      <div class="hero-actions">
-        <a href="#research" class="btn btn-primary">Our Research</a>
-        <a href="#publications" class="btn btn-outline">Publications</a>
+<!-- HERO CAROUSEL -->
+<div class="hero" id="hero-carousel">
+
+  <!-- Slides track -->
+  <div class="hero-track" id="hero-track">
+
+    <!-- SLIDE 1: Photo A -->
+    <!-- Replace 'images/photo-a.jpg' with your actual image filename -->
+    <div class="hero-slide hero-slide-photo"
+         style="background-image: url('images/lab_1.jpg');">
+    </div>
+
+    <!-- SLIDE 2: Photo B -->
+    <!-- Replace 'images/photo-b.jpg' with your actual image filename -->
+    <div class="hero-slide hero-slide-photo"
+         style="background-image: url('images/lab_2.jpg');">
+    </div>
+
+    <!-- SLIDE 3: Original text + stats (exactly as before) -->
+    <div class="hero-slide">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-kicker">Photocatalysis &amp; Environmental Engineering</div>
+          <h1 class="hero-title">Photocatalysis for a<br><span>Sustainable Future</span></h1>
+          <p class="hero-body">
+            We engineer advanced photocatalytic materials and circular-economy processes
+            to address global challenges in solar energy conversion, water remediation,
+            and sustainable manufacturing.
+          </p>
+          <div class="hero-actions">
+            <a href="#research" class="btn btn-primary">Our Research</a>
+            <a href="#publications" class="btn btn-outline">Publications</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p class="hero-card-title">Lab at a Glance</p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">50+</div>
+              <div class="hero-stat-label">Publications</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">6</div>
+              <div class="hero-stat-label">Research Areas</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">10+</div>
+              <div class="hero-stat-label">Lab Members</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">5+</div>
+              <div class="hero-stat-label">Active Grants</div>
+            </div>
+          </div>
+          <div class="hero-topics">
+            <span class="topic-tag">Heterogeneous Catalysis</span>
+            <span class="topic-tag">Solar Energy</span>
+            <span class="topic-tag">Water Treatment</span>
+            <span class="topic-tag">CO₂ Valorization</span>
+            <span class="topic-tag">E-Waste Recovery</span>
+            <span class="topic-tag">Circular Economy</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hero-card">
-      <p class="hero-card-title">Lab at a Glance</p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">50+</div>
-          <div class="hero-stat-label">Publications</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">6</div>
-          <div class="hero-stat-label">Research Areas</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">10+</div>
-          <div class="hero-stat-label">Lab Members</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">5+</div>
-          <div class="hero-stat-label">Active Grants</div>
-        </div>
-      </div>
-      <div class="hero-topics">
-        <span class="topic-tag">Heterogeneous Catalysis</span>
-        <span class="topic-tag">Solar Energy</span>
-        <span class="topic-tag">Water Treatment</span>
-        <span class="topic-tag">CO₂ Valorization</span>
-        <span class="topic-tag">E-Waste Recovery</span>
-        <span class="topic-tag">Circular Economy</span>
-      </div>
-    </div>
+
+  </div><!-- /hero-track -->
+
+  <!-- Left arrow -->
+  <button class="hero-arrow hero-arrow-prev" id="hero-prev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+
+  <!-- Right arrow -->
+  <button class="hero-arrow hero-arrow-next" id="hero-next" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div class="hero-dots" id="hero-dots">
+    <div class="hero-dot active" data-index="0"></div>
+    <div class="hero-dot" data-index="1"></div>
+    <div class="hero-dot" data-index="2"></div>
   </div>
-</div>
+
+</div><!-- /hero -->
+
+<script>
+  (function () {
+    const track   = document.getElementById('hero-track');
+    const dots    = document.querySelectorAll('.hero-dot');
+    const total   = 3; // number of slides
+    let current   = 0;
+    let timer;
+
+    function goTo(index) {
+      current = (index + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(next, 5000); // auto-advance every 5s
+    }
+
+    document.getElementById('hero-next').addEventListener('click', () => { next(); startAuto(); });
+    document.getElementById('hero-prev').addEventListener('click', () => { prev(); startAuto(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); startAuto(); }));
+
+    startAuto();
+  })();
+</script>
 
 <!-- RESEARCH -->
 <div id="research">
@@ -1011,15 +1205,12 @@
     <div class="about-grid">
       <div>
         <div class="pi-profile">
-          <div class="pi-photo-block">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <span>Photo</span>
+          <div class="pi-photo-block" style="background:#e2ddd6;">
+            <img src="images/chitiphon_chuaicham.jpg" alt="Dr. Chitiphon Chuaicham"
+                 style="width:100%;height:100%;object-fit:cover;display:block;" />
           </div>
           <div class="pi-details">
-            <div class="pi-name">Chitiphon Chuaicham</div>
+            <div class="pi-name">Dr. Chitiphon Chuaicham</div>
             <div class="pi-position">Principal Investigator</div>
             <div class="pi-meta">
               D.Eng. &middot; Lecturer<br />
@@ -1178,95 +1369,234 @@
     <h2 class="section-heading">Lab Members</h2>
     <p class="section-lead">Our interdisciplinary team brings together expertise in chemistry, chemical engineering, and environmental science.</p>
 
+    <!-- PI -->
     <div class="member-group-label">Principal Investigator</div>
     <div class="members-grid pi-row" style="margin-bottom: 40px;">
-      <div class="member-card" style="display: flex; flex-direction: row; max-width: 380px;">
+      <a href="members/chitiphon-chuaicham.html" target="_blank" class="member-card" style="display: flex; flex-direction: row; max-width: 380px; text-decoration: none;">
         <div class="member-photo" style="width: 100px; aspect-ratio: auto; flex-shrink: 0;">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+          <img src="images/chitiphon_chuaicham.jpg" alt="Dr. Chitiphon Chuaicham" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
         <div class="member-info">
-          <div class="member-name">Chitiphon Chuaicham</div>
+          <div class="member-name">Dr. Chitiphon Chuaicham</div>
           <div class="member-role">Principal Investigator · Lecturer</div>
           <div class="member-topic">D.Eng., Kyushu University · chitiphon.c@chula.ac.th</div>
         </div>
-      </div>
+      </a>
     </div>
 
+    <!-- POSTDOCS -->
+    <div class="member-group-label">Postdoctoral Researchers</div>
+    <div class="members-grid" style="margin-bottom: 40px;">
+      <a href="members/dr-auy.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/dr-auy.jpg" alt="Dr. Auy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Dr. Auy</div>
+          <div class="member-role">Postdoctoral Researcher</div>
+          <div class="member-topic">Photocatalysis &amp; Environmental Engineering</div>
+        </div>
+      </a>
+      <a href="members/dr-chayothib.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/dr-chayothib.jpg" alt="Dr. Chayothib" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Dr. Chayothib</div>
+          <div class="member-role">Postdoctoral Researcher</div>
+          <div class="member-topic">Photocatalysis &amp; Environmental Engineering</div>
+        </div>
+      </a>
+      <a href="members/dr-sai.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/dr-sai.jpg" alt="Dr. Sai" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Dr. Sai</div>
+          <div class="member-role">Postdoctoral Researcher</div>
+          <div class="member-topic">Photocatalysis &amp; Environmental Engineering</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- PHD -->
     <div class="member-group-label">Doctoral Researchers</div>
     <div class="members-grid" style="margin-bottom: 40px;">
-      <div class="member-card">
+      <a href="members/belle.html" target="_blank" class="member-card" style="text-decoration: none;">
         <div class="member-photo">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+          <img src="images/belle.jpg" alt="Belle" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
         <div class="member-info">
-          <div class="member-name">Ph.D. Student</div>
+          <div class="member-name">Belle</div>
           <div class="member-role">Doctoral Researcher</div>
-          <div class="member-topic">Photocatalytic H₂ evolution</div>
+          <div class="member-topic">Ph.D. Candidate</div>
         </div>
-      </div>
-      <div class="member-card">
+      </a>
+      <a href="members/fin.html" target="_blank" class="member-card" style="text-decoration: none;">
         <div class="member-photo">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+          <img src="images/fin.jpg" alt="Fin" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
         <div class="member-info">
-          <div class="member-name">Ph.D. Student</div>
+          <div class="member-name">Fin</div>
           <div class="member-role">Doctoral Researcher</div>
-          <div class="member-topic">CO₂ reduction catalysis</div>
+          <div class="member-topic">Ph.D. Candidate</div>
         </div>
-      </div>
+      </a>
+      <a href="members/saurav.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/saurav.jpg" alt="Saurav" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Saurav</div>
+          <div class="member-role">Doctoral Researcher</div>
+          <div class="member-topic">Ph.D. Candidate</div>
+        </div>
+      </a>
     </div>
 
+    <!-- MASTERS -->
     <div class="member-group-label">Graduate Researchers</div>
     <div class="members-grid">
-      <div class="member-card">
+      <a href="members/anney.html" target="_blank" class="member-card" style="text-decoration: none;">
         <div class="member-photo">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+          <img src="images/anney.jpg" alt="Anney" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
         <div class="member-info">
-          <div class="member-name">M.Eng. Student</div>
+          <div class="member-name">Anney</div>
           <div class="member-role">Graduate Researcher</div>
-          <div class="member-topic">Wastewater remediation</div>
+          <div class="member-topic">M.Eng. Student</div>
         </div>
-      </div>
-      <div class="member-card">
+      </a>
+      <a href="members/jo.html" target="_blank" class="member-card" style="text-decoration: none;">
         <div class="member-photo">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+          <img src="images/jo.jpg" alt="Jo" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
         <div class="member-info">
-          <div class="member-name">M.Eng. Student</div>
+          <div class="member-name">Jo</div>
           <div class="member-role">Graduate Researcher</div>
-          <div class="member-topic">E-waste metal recovery</div>
+          <div class="member-topic">M.Eng. Student</div>
         </div>
-      </div>
-      <div class="member-card">
+      </a>
+      <a href="members/moon.html" target="_blank" class="member-card" style="text-decoration: none;">
         <div class="member-photo">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+          <img src="images/moon.jpg" alt="Moon" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
         <div class="member-info">
-          <div class="member-name">Undergraduate</div>
-          <div class="member-role">Research Assistant</div>
-          <div class="member-topic">Material characterization</div>
+          <div class="member-name">Moon</div>
+          <div class="member-role">Graduate Researcher</div>
+          <div class="member-topic">M.Eng. Student</div>
         </div>
-      </div>
+      </a>
+      <a href="members/im.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/im.jpg" alt="Im" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Im</div>
+          <div class="member-role">Graduate Researcher</div>
+          <div class="member-topic">M.Eng. Student</div>
+        </div>
+      </a>
+      <a href="members/wheel.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/wheel.jpg" alt="Wheel" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Wheel</div>
+          <div class="member-role">Graduate Researcher</div>
+          <div class="member-topic">M.Eng. Student</div>
+        </div>
+      </a>
+      <a href="members/most_sonia_aktar.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/most_sonia_aktar.jpg" alt="Most. Sonia Aktar" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Most. Sonia Aktar</div>
+          <div class="member-role">Graduate Researcher</div>
+          <div class="member-topic">M.Eng. Student</div>
+        </div>
+      </a>
+      <a href="members/hadiuzzaman.html" target="_blank" class="member-card" style="text-decoration: none;">
+        <div class="member-photo">
+          <img src="images/hadiuzzaman.jpg" alt="Hadiuzzaman" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="member-info">
+          <div class="member-name">Hadiuzzaman</div>
+          <div class="member-role">Graduate Researcher</div>
+          <div class="member-topic">M.Eng. Student</div>
+        </div>
+      </a>
     </div>
+    <div style="margin-top: 16px; padding-top: 40px; border-top: 1px solid var(--border);">
+      <div class="member-group-label">Alumni &amp; Previous Members</div>
+
+      <!-- Postdoc Alumni -->
+      <div style="font-size: 12px; font-weight: 600; color: var(--ink-secondary); margin: 20px 0 10px; letter-spacing: 0.04em;">Postdoctoral Alumni</div>
+      <table class="alumni-table" style="margin-bottom: 28px;">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Name</th>
+            <th style="width: 14%;">Years</th>
+            <th style="width: 30%;">Research Topic</th>
+            <th>Current Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: var(--ink-muted); font-style: italic;">To be updated</td>
+            <td class="alumni-year">—</td>
+            <td class="alumni-position">—</td>
+            <td class="alumni-position">—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- PhD Alumni -->
+      <div style="font-size: 12px; font-weight: 600; color: var(--ink-secondary); margin: 0 0 10px; letter-spacing: 0.04em;">Doctoral Alumni</div>
+      <table class="alumni-table" style="margin-bottom: 28px;">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Name</th>
+            <th style="width: 14%;">Years</th>
+            <th style="width: 30%;">Thesis Topic</th>
+            <th>Current Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: var(--ink-muted); font-style: italic;">To be updated</td>
+            <td class="alumni-year">—</td>
+            <td class="alumni-position">—</td>
+            <td class="alumni-position">—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Masters Alumni -->
+      <div style="font-size: 12px; font-weight: 600; color: var(--ink-secondary); margin: 0 0 10px; letter-spacing: 0.04em;">Masters Alumni</div>
+      <table class="alumni-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Name</th>
+            <th style="width: 12%;">Degree</th>
+            <th style="width: 14%;">Years</th>
+            <th style="width: 28%;">Thesis Topic</th>
+            <th>Current Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="members/muhammad-shahab.html" target="_blank" style="color: var(--chula-wine); font-weight: 600;">Muhammad Shahab</a></td>
+            <td><span class="alumni-degree-badge">M.Eng.</span></td>
+            <td class="alumni-year">—</td>
+            <td class="alumni-position">—</td>
+            <td class="alumni-position">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 
@@ -1441,7 +1771,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Chitiphon Research Group &middot; All rights reserved</span>
+      <span>© 2026 Chitiphon Research Group &middot; All rights reserved</span>
       <span><a href="mailto:chitiphon.c@chula.ac.th">chitiphon.c@chula.ac.th</a></span>
     </div>
   </div>
