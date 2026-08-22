@@ -13,7 +13,8 @@
     { "name": "Anney", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/anney.jpg", "page": "members/anney.html" },
     { "name": "Wheel", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/wheel.jpg", "page": "members/wheel.html" },
     { "name": "Most. Sonia Aktar", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/most_sonia_aktar.jpg", "page": "members/most_sonia_aktar.html" },
-    { "name": "Hadiuzzaman", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/hadiuzzaman.jpg", "page": "members/hadiuzzaman.html" }
+    { "name": "Hadiuzzaman", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/hadiuzzaman.jpg", "page": "members/hadiuzzaman.html" },
+    { "name": "Aomsin", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/aomsin.jpg", "page": "members/aomsin.html" }
   ],
   "alumniPostdoc": [],
   "alumniPhd": [],
