@@ -6,8 +6,8 @@
   ],
   "phdStudents": [
     { "name": "Belle", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/belle.jpg", "page": "members/belle.html" },
-    { "name": "Fin", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/fin.jpg", "page": "members/fin.html" },
-    { "name": "Saurav", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/saurav.jpg", "page": "members/saurav.html" }
+    { "name": "Jirawat Sangpreedeekorn", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/fin.jpg", "page": "members/fin.html" },
+    { "name": "Saurabh Yadav", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/saurav.jpg", "page": "members/saurav.html" }
   ],
   "mastersStudents": [
     { "name": "Anney", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/anney.jpg", "page": "members/anney.html" },
@@ -20,8 +20,8 @@
   "alumniPhd": [],
   "alumniMasters": [
     { "name": "Muhammad Shahab", "degree": "M.Eng. in Environmental Engineering", "years": "—", "thesis": "—", "position": "—", "page": "members/muhammad-shahab.html" },
-    { "name": "Jo", "degree": "M.Sc. in IPHSM", "years": "—", "thesis": "—", "position": "—", "page": "members/jo.html" },
-    { "name": "Moon", "degree": "M.Eng. in Environmental Engineering", "years": "—", "thesis": "—", "position": "—", "page": "members/moon.html" },
-    { "name": "Im", "degree": "M.Eng. in Environmental Engineering", "years": "—", "thesis": "—", "position": "—", "page": "members/im.html" }
+    { "name": "Geovanna Paola Asitimbay Barbecho", "degree": "M.Sc. in IPHSM", "years": "2026", "thesis": "—", "position": "—", "page": "members/jo.html" },
+    { "name": "Khimouorn Plang", "degree": "M.Eng. in Environmental Engineering", "years": "2026", "thesis": "—", "position": "—", "page": "members/moon.html" },
+    { "name": "Chheng Im Si", "degree": "M.Eng. in Environmental Engineering", "years": "2026", "thesis": "—", "position": "—", "page": "members/im.html" }
   ]
 }
