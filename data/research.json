@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "⚗️",
+    "title": "Photocatalysis & Solar Energy Conversion",
+    "desc": "Design of visible-light-driven heterogeneous photocatalysts via structural modification and composite engineering for hydrogen evolution and selective oxidation."
+  },
+  {
+    "icon": "💧",
+    "title": "Wastewater Remediation",
+    "desc": "Advanced oxidation processes and photocatalytic systems for the treatment of industrial effluents, dye removal, and emerging micropollutants in water bodies."
+  },
+  {
+    "icon": "♻️",
+    "title": "Circular Economy & Waste Valorization",
+    "desc": "Converting industrial by-products and natural waste streams into functional photocatalytic materials — closing the loop between pollution and resource recovery."
+  },
+  {
+    "icon": "🌫️",
+    "title": "CO₂ Capture & Utilization",
+    "desc": "Developing catalytic pathways for carbon dioxide valorization into value-added chemicals and fuels as part of a broader net-zero engineering strategy."
+  },
+  {
+    "icon": "🖥️",
+    "title": "Electronic Waste Recovery",
+    "desc": "Green hydrometallurgical and photochemical processes for selective extraction of precious metals from end-of-life batteries and printed circuit boards."
+  },
+  {
+    "icon": "🌿",
+    "title": "Biomass Conversion",
+    "desc": "Photo(electro)catalytic conversion of lignocellulosic biomass into platform chemicals, contributing to sustainable bio-based feedstock production."
+  }
+]

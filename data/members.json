@@ -1,0 +1,26 @@
+{
+  "postdocs": [
+    { "name": "Dr. Auy", "role": "Postdoctoral Researcher", "topic": "Photocatalysis & Environmental Engineering", "img": "images/dr-auy.jpg", "page": "members/dr-auy.html" },
+    { "name": "Dr. Chayothib", "role": "Postdoctoral Researcher", "topic": "Photocatalysis & Environmental Engineering", "img": "images/dr-chayothib.jpg", "page": "members/dr-chayothib.html" },
+    { "name": "Dr. Sai", "role": "Postdoctoral Researcher", "topic": "Photocatalysis & Environmental Engineering", "img": "images/dr-sai.jpg", "page": "members/dr-sai.html" }
+  ],
+  "phdStudents": [
+    { "name": "Belle", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/belle.jpg", "page": "members/belle.html" },
+    { "name": "Fin", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/fin.jpg", "page": "members/fin.html" },
+    { "name": "Saurav", "role": "Doctoral Researcher", "topic": "Ph.D. Candidate", "img": "images/saurav.jpg", "page": "members/saurav.html" }
+  ],
+  "mastersStudents": [
+    { "name": "Anney", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/anney.jpg", "page": "members/anney.html" },
+    { "name": "Jo", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/jo.jpg", "page": "members/jo.html" },
+    { "name": "Moon", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/moon.jpg", "page": "members/moon.html" },
+    { "name": "Im", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/im.jpg", "page": "members/im.html" },
+    { "name": "Wheel", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/wheel.jpg", "page": "members/wheel.html" },
+    { "name": "Most. Sonia Aktar", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/most_sonia_aktar.jpg", "page": "members/most_sonia_aktar.html" },
+    { "name": "Hadiuzzaman", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/hadiuzzaman.jpg", "page": "members/hadiuzzaman.html" }
+  ],
+  "alumniPostdoc": [],
+  "alumniPhd": [],
+  "alumniMasters": [
+    { "name": "Muhammad Shahab", "degree": "M.Eng.", "years": "—", "thesis": "—", "position": "—", "page": "members/muhammad-shahab.html" }
+  ]
+}
