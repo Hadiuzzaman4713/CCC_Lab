@@ -1,0 +1,116 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "research_section"
+    label: "Research Areas"
+    files:
+      - label: "Research List"
+        name: "research"
+        file: "data/research.json"
+        fields:
+          - label: "Research Cards"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Icon (Emoji)", name: "icon", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "desc", widget: "text"}
+
+  - name: "publications_section"
+    label: "Publications"
+    files:
+      - label: "Publications List"
+        name: "publications"
+        file: "data/publications.json"
+        fields:
+          - label: "Publications"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Year", name: "year", widget: "string"}
+              - {label: "Mark as 'New'?", name: "isNew", widget: "boolean", default: false, required: false}
+              - {label: "Paper Title", name: "title", widget: "string"}
+              - {label: "Authors (HTML enabled)", name: "authors", widget: "string"}
+              - {label: "Journal / Venue", name: "venue", widget: "string"}
+              - {label: "Volume / Details", name: "vol", widget: "string", required: false}
+              - {label: "DOI URL", name: "doi", widget: "string", required: false}
+
+  - name: "news_section"
+    label: "News & Updates"
+    files:
+      - label: "News List"
+        name: "news"
+        file: "data/news.json"
+        fields:
+          - label: "News Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Date", name: "date", widget: "string"}
+              - label: "Category Tag"
+                name: "tag"
+                widget: "select"
+                options:
+                  - {label: "Publication", value: "pub"}
+                  - {label: "Award", value: "award"}
+                  - {label: "People", value: "people"}
+                  - {label: "Grant", value: "grant"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Body", name: "body", widget: "text"}
+
+  - name: "members_section"
+    label: "Lab Members & Alumni"
+    files:
+      - label: "Team Database"
+        name: "members"
+        file: "data/members.json"
+        fields:
+          - label: "Postdoctoral Researchers"
+            name: "postdocs"
+            widget: "list"
+            required: false
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Topic", name: "topic", widget: "string"}
+              - {label: "Photo Path", name: "img", widget: "image"}
+              - {label: "Bio Page URL", name: "page", widget: "string", required: false}
+
+          - label: "Doctoral Researchers"
+            name: "phdStudents"
+            widget: "list"
+            required: false
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Topic", name: "topic", widget: "string"}
+              - {label: "Photo Path", name: "img", widget: "image"}
+              - {label: "Bio Page URL", name: "page", widget: "string", required: false}
+
+          - label: "Graduate Researchers (Masters)"
+            name: "mastersStudents"
+            widget: "list"
+            required: false
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Topic", name: "topic", widget: "string"}
+              - {label: "Photo Path", name: "img", widget: "image"}
+              - {label: "Bio Page URL", name: "page", widget: "string", required: false}
+
+          - label: "Masters Alumni"
+            name: "alumniMasters"
+            widget: "list"
+            required: false
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Degree", name: "degree", widget: "string", default: "M.Eng."}
+              - {label: "Years Active", name: "years", widget: "string"}
+              - {label: "Thesis Topic", name: "thesis", widget: "string"}
+              - {label: "Current Position", name: "position", widget: "string"}
+              - {label: "Profile Link", name: "page", widget: "string", required: false}
