@@ -1571,39 +1571,52 @@
 
   // 3. Fetch Members
   fetch('./data/members.json')
-    .then(res => res.json())
-    .then(m => {
+    .then(res => {
+      if (!res.ok) throw new Error("Could not load members.json");
+      return res.json();
+    })
+    .then(data => {
+      // Sometimes Decap CMS nests data inside an 'items' object, or it sits at the root.
+      // This ensures we always target the correct object containing your arrays.
+      const m = data.items ? data.items : data;
+      console.log("Members data loaded:", m); // This will show you exactly what is loaded!
+
       function memberCard(item) {
+        if (!item || !item.name) return ''; // Skip empty entries safely
         return `<a href="${item.page || '#'}" target="_blank" class="member-card" style="text-decoration:none;">
           <div class="member-photo">
-            <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="${item.img || ''}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="member-info">
             <div class="member-name">${item.name}</div>
-            <div class="member-role">${item.role}</div>
-            <div class="member-topic">${item.topic}</div>
+            <div class="member-role">${item.role || ''}</div>
+            <div class="member-topic">${item.topic || ''}</div>
           </div></a>`;
       }
 
-      // Populate Grid Members
-      document.getElementById('grid-postdocs').innerHTML = (m.postdocs || []).map(memberCard).join('');
-      document.getElementById('grid-phds').innerHTML = (m.phdStudents || []).map(memberCard).join('');
-      document.getElementById('grid-masters').innerHTML = (m.mastersStudents || []).map(memberCard).join('');
+      // Render Grid Members safely
+      const postdocs = Array.isArray(m.postdocs) ? m.postdocs : [];
+      const phds = Array.isArray(m.phdStudents) ? m.phdStudents : [];
+      const masters = Array.isArray(m.mastersStudents) ? m.mastersStudents : [];
 
-      // Populate Alumni Postdoc Table
-      var alumniPostdoc = m.alumniPostdoc || [];
+      document.getElementById('grid-postdocs').innerHTML = postdocs.map(memberCard).join('');
+      document.getElementById('grid-phds').innerHTML = phds.map(memberCard).join('');
+      document.getElementById('grid-masters').innerHTML = masters.map(memberCard).join('');
+
+      // Render Alumni Postdoc Table
+      const alumniPostdoc = Array.isArray(m.alumniPostdoc) ? m.alumniPostdoc : [];
       document.getElementById('alumni-postdoc-body').innerHTML = alumniPostdoc.length === 0
         ? '<tr><td style="color:var(--ink-muted);font-style:italic;">To be updated</td><td class="alumni-year">—</td><td class="alumni-position">—</td><td class="alumni-position">—</td></tr>'
-        : alumniPostdoc.map(a => `<tr><td>${a.name}</td><td class="alumni-year">${a.years}</td><td class="alumni-position">${a.topic}</td><td class="alumni-position">${a.position}</td></tr>`).join('');
+        : alumniPostdoc.map(a => `<tr><td>${a.name}</td><td class="alumni-year">${a.years || '—'}</td><td class="alumni-position">${a.topic || '—'}</td><td class="alumni-position">${a.position || '—'}</td></tr>`).join('');
 
-      // Populate Alumni PhD Table
-      var alumniPhd = m.alumniPhd || [];
+      // Render Alumni PhD Table
+      const alumniPhd = Array.isArray(m.alumniPhd) ? m.alumniPhd : [];
       document.getElementById('alumni-phd-body').innerHTML = alumniPhd.length === 0
         ? '<tr><td style="color:var(--ink-muted);font-style:italic;">To be updated</td><td class="alumni-year">—</td><td class="alumni-position">—</td><td class="alumni-position">—</td></tr>'
-        : alumniPhd.map(a => `<tr><td>${a.name}</td><td class="alumni-year">${a.years}</td><td class="alumni-position">${a.thesis}</td><td class="alumni-position">${a.position}</td></tr>`).join('');
+        : alumniPhd.map(a => `<tr><td>${a.name}</td><td class="alumni-year">${a.years || '—'}</td><td class="alumni-position">${a.thesis || '—'}</td><td class="alumni-position">${a.position || '—'}</td></tr>`).join('');
 
-      // Populate Alumni Masters Table
-      var alumniMasters = m.alumniMasters || [];
+      // Render Alumni Masters Table
+      const alumniMasters = Array.isArray(m.alumniMasters) ? m.alumniMasters : [];
       document.getElementById('alumni-masters-body').innerHTML = alumniMasters.length === 0
         ? '<tr><td style="color:var(--ink-muted);font-style:italic;">To be updated</td><td></td><td class="alumni-year">—</td><td class="alumni-position">—</td><td class="alumni-position">—</td></tr>'
         : alumniMasters.map(a => `
@@ -1615,7 +1628,8 @@
             <td class="alumni-position">${a.position || '—'}</td>
           </tr>
         `).join('');
-    }).catch(console.error);
+    })
+    .catch(err => console.error("Error loading members:", err));
 
   // 4. Fetch News
   var TAG_LABELS = { pub: 'Publication', award: 'Award', people: 'People', grant: 'Grant' };
