@@ -11,9 +11,6 @@
   ],
   "mastersStudents": [
     { "name": "Anney", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/anney.jpg", "page": "members/anney.html" },
-    { "name": "Jo", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/jo.jpg", "page": "members/jo.html" },
-    { "name": "Moon", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/moon.jpg", "page": "members/moon.html" },
-    { "name": "Im", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/im.jpg", "page": "members/im.html" },
     { "name": "Wheel", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/wheel.jpg", "page": "members/wheel.html" },
     { "name": "Most. Sonia Aktar", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/most_sonia_aktar.jpg", "page": "members/most_sonia_aktar.html" },
     { "name": "Hadiuzzaman", "role": "Graduate Researcher", "topic": "M.Eng. Student", "img": "images/hadiuzzaman.jpg", "page": "members/hadiuzzaman.html" }
@@ -21,6 +18,9 @@
   "alumniPostdoc": [],
   "alumniPhd": [],
   "alumniMasters": [
-    { "name": "Muhammad Shahab", "degree": "M.Eng.", "years": "—", "thesis": "—", "position": "—", "page": "members/muhammad-shahab.html" }
+    { "name": "Muhammad Shahab", "degree": "M.Eng. in Environmental Engineering", "years": "—", "thesis": "—", "position": "—", "page": "members/muhammad-shahab.html" }
+    { "name": "Jo", "degree": "M.Sc. in IPHSM", "years": "—", "thesis": "—", "position": "—", "page": "members/jo.html" },
+    { "name": "Moon", "degree": "M.Eng. in Environmental Engineering", "years": "—", "thesis": "—", "position": "—", "page": "members/moon.html" },
+    { "name": "Im", "degree": "M.Eng. in Environmental Engineering", "years": "—", "thesis": "—", "position": "—", "page": "members/im.html" }
   ]
 }
