@@ -1516,15 +1516,6 @@
 
   startAuto();
 
-  /* ── OPEN POSITIONS (Hardcoded Sidebar) ───────────────────── */
-  document.getElementById('positions-list').innerHTML = openPositions.map(function (p) {
-    return '<div class="open-position">'
-      + '<div class="position-title">' + p.title + '</div>'
-      + '<div class="position-desc">' + p.desc + '</div>'
-      + '<a class="position-apply" href="mailto:chitiphon.c@chula.ac.th">' + p.label + '</a>'
-      + '</div>';
-  }).join('');
-
   /* ── DYNAMIC JSON FETCHES FOR ADMIN-CONTROLLED SECTIONS ───── */
 
   // 1. Fetch Research
