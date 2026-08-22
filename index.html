@@ -1535,7 +1535,7 @@
   /* ── DYNAMIC JSON FETCHES FOR ADMIN-CONTROLLED SECTIONS ───── */
 
   // 1. Fetch Research
-  fetch('data/research.json')
+  fetch('./data/research.json')
     .then(res => res.json())
     .then(data => {
       const items = Array.isArray(data) ? data : data.items || [];
@@ -1549,7 +1549,7 @@
     }).catch(console.error);
 
   // 2. Fetch Publications
-  fetch('data/publications.json')
+  fetch('./data/publications.json')
     .then(res => res.json())
     .then(data => {
       const items = Array.isArray(data) ? data : data.items || [];
@@ -1570,7 +1570,7 @@
     }).catch(console.error);
 
   // 3. Fetch Members
-  fetch('data/members.json')
+  fetch('./data/members.json')
     .then(res => res.json())
     .then(m => {
       function memberCard(item) {
@@ -1619,7 +1619,7 @@
 
   // 4. Fetch News
   var TAG_LABELS = { pub: 'Publication', award: 'Award', people: 'People', grant: 'Grant' };
-  fetch('data/news.json')
+  fetch('./data/news.json')
     .then(res => res.json())
     .then(data => {
       const items = Array.isArray(data) ? data : data.items || [];
